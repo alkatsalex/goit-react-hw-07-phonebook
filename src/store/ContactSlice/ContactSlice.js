@@ -25,7 +25,7 @@ const ContactSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts.items = [...payload];
+        state.contacts.items = payload;
       })
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected)
