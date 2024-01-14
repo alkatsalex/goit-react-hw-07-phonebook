@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './Filter.module.css';
 import { chengeFilter } from 'store/filterSlice/filterSlice';
-import { selectFilter } from 'store/selectors';
+import { selectFilter } from 'store/filterSlice/selectors';
 
 export default function Filter() {
   const { filter } = useSelector(selectFilter);

@@ -1,8 +1,10 @@
 import ContactList from './ContactList/ContactList.jsx';
 import ContactForm from './ContactForm/ContactForm.jsx';
 import Filter from './Filter/Filter.jsx';
+import { getContactsAPI } from 'api/contactsApi.js';
 
 export function App() {
+  getContactsAPI();
   return (
     <div
       style={{

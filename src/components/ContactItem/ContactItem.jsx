@@ -4,10 +4,10 @@ import { deleteContact } from 'store/ContactSlice/ContactSlice';
 export default function ContactItem({ id, name, number }) {
   const dispatch = useDispatch();
 
-  const handlerClick = () => {
-    console.log('id :>> ', id);
-    dispatch(deleteContact(id));
-  };
+  // const handlerClick = () => {
+  //   console.log('id :>> ', id);
+  //   dispatch(deleteContact(id));
+  // };
 
   return (
     <li className={css.item} id={id}>
@@ -15,9 +15,7 @@ export default function ContactItem({ id, name, number }) {
         <p className={css.name}>{name}</p>
         <p className={css.tel}>{number}</p>
       </span>
-      <button className={css.btn} onClick={handlerClick}>
-        Delete 🗑
-      </button>
+      <button className={css.btn}>Delete 🗑</button>
     </li>
   );
 }
