@@ -1,8 +1,8 @@
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import css from './ContactItem.module.css';
-import { deleteContact } from 'store/ContactSlice/ContactSlice';
+// import { deleteContact } from 'store/ContactSlice/ContactSlice';
 export default function ContactItem({ id, name, number }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const handlerClick = () => {
   //   console.log('id :>> ', id);
