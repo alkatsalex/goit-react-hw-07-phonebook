@@ -42,8 +42,8 @@ export const postNewContact = newContact => {
       }
       // handle error
     })
-    .then(task => {
-      return task;
+    .then(contact => {
+      return contact;
     })
     .catch(error => {
       return error;
@@ -60,8 +60,8 @@ export const deleteContact = id => {
       }
       // handle error
     })
-    .then(task => {
-      return task;
+    .then(contact => {
+      return contact;
     })
     .catch(error => {
       return error;

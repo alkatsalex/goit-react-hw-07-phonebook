@@ -1,34 +1,32 @@
 // import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactForm.module.css';
-// import { addContact } from 'store/ContactSlice/ContactSlice';
-// import { selectContacts } from 'store/ContactSlice/selectors';
+import { selectContacts } from 'store/ContactSlice/selectors';
+import { addContactThunk } from 'store/ContactSlice/thunk';
 
 function ContactForm() {
-  // const { contacts } = useSelector(selectContacts);
-  // const dispatch = useDispatch();
+  const { items } = useSelector(selectContacts);
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    const number = form.number.value;
+    const phone = form.number.value;
     const name = form.name.value;
     const contact = {
       name,
-      number,
+      phone,
     };
     console.log(contact);
-    //   const isDublicated = contacts.find(
-    //     e => e.name.toLowerCase() === contact.name.toLowerCase()
-    //   );
-    //   if (isDublicated) {
-    //     alert('This contact is already added');
-    //     return;
-    //   } else {
-    //     dispatch(addContact(contact));
-    //   }
-
-    //   e.target.number.value = '';
-    //   e.target.name.value = '';
+    const isDublicated = items.find(
+      e => e.name.toLowerCase() === contact.name.toLowerCase()
+    );
+    if (isDublicated) {
+      alert('This contact is already added');
+      return;
+    } else {
+      dispatch(addContactThunk(contact));
+    }
     form.reset();
   };
   return (

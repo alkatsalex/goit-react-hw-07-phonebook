@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getContactsThunk } from './thunk';
+import { getContactsThunk, addContactThunk, deleteContactThunk } from './thunk';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -25,8 +25,12 @@ const ContactSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts.items = payload;
+        state.items = payload;
       })
+      .addCase(addContactThunk.fulfilled, (state, { payload }) => {
+        state.items.push(payload);
+      })
+      .addCase(deleteContactThunk.fulfilled)
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected)
       .addMatcher(({ type }) => type.endsWith('/fulfilled'), handleFulfilled);

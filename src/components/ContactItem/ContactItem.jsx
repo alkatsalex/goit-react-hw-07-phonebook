@@ -1,21 +1,27 @@
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import css from './ContactItem.module.css';
-// import { deleteContact } from 'store/ContactSlice/ContactSlice';
+import { deleteContactThunk } from 'store/ContactSlice/thunk';
 export default function ContactItem({ id, name, number }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const handlerClick = () => {
-  //   console.log('id :>> ', id);
-  //   dispatch(deleteContact(id));
-  // };
+  const delele = id => {
+    console.log(id);
+    dispatch(deleteContactThunk(id));
+  };
+
+  const handlerClick = () => {
+    delele(id);
+  };
 
   return (
-    <li className={css.item} id={id}>
+    <li className={css.item}>
       <span>
         <p className={css.name}>{name}</p>
         <p className={css.tel}>{number}</p>
       </span>
-      <button className={css.btn}>Delete 🗑</button>
+      <button className={css.btn} onClick={handlerClick}>
+        Delete 🗑
+      </button>
     </li>
   );
 }

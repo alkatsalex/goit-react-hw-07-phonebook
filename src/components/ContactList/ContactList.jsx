@@ -8,7 +8,7 @@ import { getContactsThunk } from 'store/ContactSlice/thunk';
 
 export default function ContactList() {
   const dispatch = useDispatch();
-  const { items } = useSelector(selectContacts);
+  const { items, isLoading } = useSelector(selectContacts);
   const { filter } = useSelector(selectFilter);
   console.log(items);
 
@@ -26,10 +26,13 @@ export default function ContactList() {
     <div>
       <h2 className={css.title}>Contacts:</h2>
       <ul>
-        {filteredContacts &&
-          filteredContacts.map(({ name, number, id }) => {
-            return <ContactItem key={id} id={id} name={name} number={number} />;
-          })}
+        {!isLoading ? (
+          filteredContacts?.map(({ name, phone, id }) => {
+            return <ContactItem key={id} id={id} name={name} number={phone} />;
+          })
+        ) : (
+          <p>Loading...</p>
+        )}
       </ul>
     </div>
   );
