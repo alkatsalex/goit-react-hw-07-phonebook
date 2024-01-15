@@ -25,7 +25,6 @@ function ContactForm() {
       alert('This contact is already added');
       return;
     } else {
-      console.log(contact);
       dispatch(addContactThunk(contact));
     }
     form.reset();

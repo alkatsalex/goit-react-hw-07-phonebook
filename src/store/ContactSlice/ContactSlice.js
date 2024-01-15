@@ -26,14 +26,17 @@ const ContactSlice = createSlice({
     builder
       .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
         state.items = payload;
+        console.log('payload>>>>>>1', payload);
       })
-      .addCase(addContactThunk.fulfilled, (state, { meta: { arg } }) => {
-        console.log(arg);
-        state.items.push(arg);
+      .addCase(addContactThunk.fulfilled, (state, { payload }) => {
+        console.log('payload 2:>> ', payload);
+        state.items.push(payload);
+        // console.log('items>>>>>>2', state.items);
       })
-      .addCase(deleteContactThunk.fulfilled, (state, { meta: { arg } }) => {
-        console.log(arg);
-        state.items = state.items.filter(el => el.id !== arg);
+      .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
+        console.log('payload 3:>> ', payload);
+        // console.log(state.items);
+        state.items = state.items.filter(el => el.id !== payload.id);
       })
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected)
