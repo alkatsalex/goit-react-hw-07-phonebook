@@ -27,8 +27,14 @@ const ContactSlice = createSlice({
       .addCase(getContactsThunk.fulfilled, (state, { payload }) => {
         state.items = payload;
       })
-      .addCase(addContactThunk.fulfilled)
-      .addCase(deleteContactThunk.fulfilled)
+      .addCase(addContactThunk.fulfilled, (state, { meta: { arg } }) => {
+        console.log(arg);
+        state.items.push(arg);
+      })
+      .addCase(deleteContactThunk.fulfilled, (state, { meta: { arg } }) => {
+        console.log(arg);
+        state.items = state.items.filter(el => el.id !== arg);
+      })
       .addMatcher(({ type }) => type.endsWith('/pending'), handlePending)
       .addMatcher(({ type }) => type.endsWith('/rejected'), handleRejected)
       .addMatcher(({ type }) => type.endsWith('/fulfilled'), handleFulfilled);
