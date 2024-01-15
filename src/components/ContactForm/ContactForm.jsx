@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ContactForm.module.css';
 import { selectContacts } from 'store/ContactSlice/selectors';
-import { addContactThunk } from 'store/ContactSlice/thunk';
+import { addContactThunk, getContactsThunk } from 'store/ContactSlice/thunk';
 
 function ContactForm() {
   const { items } = useSelector(selectContacts);
@@ -26,6 +26,7 @@ function ContactForm() {
       return;
     } else {
       dispatch(addContactThunk(contact));
+      dispatch(getContactsThunk());
     }
     form.reset();
   };
